@@ -29,7 +29,7 @@ Objects in JavaScript
 
 * Key-value stores are used to group multiple pieces of data together
   * Like arrays, key-value stores can hold multiple pieces of data of varying types; but unlike arrays, objects use named 
-  keys rather than indices to order and access those pieces of data
+  keys rather than indices to access those pieces of data
   * Modern languages call this data structure different names, Ruby = hash, Python = dictionary, Go = map  
 * Object Oriented Programming(OOP) is the idea of combining a set of specific data with the functions that operate on that 
 data
@@ -53,7 +53,7 @@ something.
 In JavaScript, there are 5 primitive types, ``null``, ``undefined``, ``boolean``, ``string``, and ``number``, 
 **everything else is an object** even functions. And what is an object? An Object in JavaScript is a key-value store. 
 The properties are the keys to the key-value store. The methods are just keys that map to a function instead of 
-something more concrete like a string, and 
+something more concrete like a string, or an array, or even another object.
 
 An Object in JavaScript also has one important property called a ``prototype``. This is the property that lets us link 
 all of our objects, like cars, together.
@@ -61,7 +61,7 @@ all of our objects, like cars, together.
 [Comment]: # (One way to think about this is like the difference between small "d" democrats and big "D" Democrats in the US. Everyone in the principles of democracy but Democrats believe in particular way of carrying out those principles but they're both called democrats.) 
 If we just need a key-value store we can create an Object and just ignore the prototype.
 
-![mindblown](https://www.github.com/den-wdi-1/js-objects/images/cosmo_mind_blown.gif)
+![mindblown](https://github.com/den-wdi-1/js-objects/blob/master/images/cosmo_mind_blown.gif)
 
 It's OK if this doesn't make sense right now. We'll be going over how this works for the rest of the module so we'll be
 able to see these ideas in action. We'll also be coming back to OOP in more depth with Ruby.
