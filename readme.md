@@ -3,7 +3,7 @@
 ### Objectives
 *After this lesson, students will be able to:*
 
-- Compare objects and key-value stores to arrays as data structures
+- Compare objects, key-value stores, and arrays as data structures
 - Explain the difference between object properties and methods
 - Create empty objects and objects with multiple properties and methods using object literal syntax
 - Compare adding and retrieving properties to an existing object using the dot and bracket notations
@@ -13,45 +13,64 @@
 ### Preparation
 *Before this lesson, students should already be able to:*
 
-- Create and manipulate variables with javascript
+- Create and manipulate variables with JavaScript
 - Use the chrome dev tools console
 
 Objects in JavaScript
 =====
 
+[Comment]: # (Objects and Object Oriented Programming is in some sense the start of "real programming". But it also comes with another aspect of being a developer, "religious wars" or deeply held beliefs about the "right" way to do something.)
+[Comment]: # (The vocabulary is important but it also can change a little bit based on who you are talking to. If you can follow the exercises and make what we talk about operational don't worry to much about the vocabulary.) 
+[Comment]: # (Feel free to be a little bit more aggressive about asking if something is a parking lot issue.)
+
 ## Opening
 
-### What is an object?
+### What are objects and key-value stories (10 mins)
 
-* Objects are a type of data structure that is nearly universal across programming languages, although they may have different names in different languages
-* Like arrays, objects can hold multiple pieces of data of varying types; but unlike arrays, objects use named keys rather than indices to order and access those pieces of data
-* Objects in general are made up of two things – properties and methods. Properties are data attached to an object that describe it or are related to it in some way. Methods are just functions, but because they're attached to an object, you can think of them as actions that the object can invoke on itself
-* In JavaScript, an object is a type of key-value store, or a way to group many pairs of keys and values together, so sometimes it's used like a hash (in Ruby) or a dictionary (in other languages)
+* Key-value stores are used to group multiple pieces of data together
+  * Like arrays, key-value stores can hold multiple pieces of data of varying types; but unlike arrays, objects use named 
+  keys rather than indices to order and access those pieces of data
+  * Modern languages call this data structure different names, Ruby = hash, Python = dictionary, Go = map  
+* Object Oriented Programming(OOP) is the idea of combining a set of specific data with the functions that operate on that 
+data
 
-Example: A car has properties, a type of engine, a color, a certain number of seats etc. Following the same logic, a JavaScript object may have **properties** and **values** for these properties.
+Example: We can think about modeling a car in an object oriented way by thinking about what is the data about a car that
+we need and how does that data change what are the functions that operate on the data were using for the car
 
-Aside from the values `null` and `undefined`, **everything in JavaScript is an object**.
+[Comment]: # (This is different from procedural programming or functional programming in that we grouping things by related concepts rather than the steps needed to follow or something more esoteric) 
+* Objects in general are made up of two things – properties and methods. Properties are the data attached to an object 
+that describe it or are related to it in some way. Methods are the functions that associated to the object or how we 
+can change or alter the object.
 
-### Collections of name-value pairs
+Example 1: Car in e-commerce app. Here the properties are more related to the car as a good to sell. What color is it? 
+How many seats are there? What kind of seats, leather vs  upholstery. What kind of sound system it has. Some of the 
+methods might be 
 
-Javascript objects work as lists of keys (**A property name**) and corresponding values (**A property value**).
+Example 2: Car in a driving game. Here the properties are more related to how it works in the game. We still might have
+color but we'd also have position, speed, maybe damage. The methods are things like driving, braking, or hitting 
+something.
 
-This way of storing/reading data is widely used across programs and languages because it’s highly customisable and quick to implement.
+In JavaScript, there are 5 primitive types, ``null``, ``undefined``, ``boolean``, ``string``, and ``number``, 
+**everything else is an object** even functions. And what is an object? An Object in JavaScript is a key-value store. 
+The properties are the keys to the key-value store. The methods are just keys that map to a function instead of 
+something more concrete like a string, and 
 
-A key can be either a name, a number or a string, the corresponding value to a key can be any value part of JavaScript, including arrays, `null` or `undefined`and even another object. Objects structures can therefore be nested (objects inside objects) and of any complexity.
+An Object in JavaScript also has one important property called a ``prototype``. This is the property that lets us link 
+all of our objects, like cars, together.
 
-## Creating Objects
+[Comment]: # (One way to think about this is like the difference between small "d" democrats and big "D" Democrats in the US. Everyone in the principles of democracy but Democrats believe in particular way of carrying out those principles but they're both called democrats.) 
+If we just need a key-value store we can create an Object and just ignore the prototype.
+
+![mindblown](https://www.github.com/den-wdi-1/js-objects/images/cosmo_mind_blown.gif)
+
+It's OK if this doesn't make sense right now. We'll be going over how this works for the rest of the module so we'll be
+able to see these ideas in action. We'll also be coming back to OOP in more depth with Ruby.
+
+[CFU]: # (Quick Fo5 around the comparison between arrays, key-value pairs, and objects. If everyone is completely lost check each concept individually do a quick review of the completely lost portion and then )
+
+## Creating Objects (5 mins)
 
 There are 4 different ways to create an object.
-
-#### Object constructor
-
-The [Object](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object) constructor creates an object wrapper for the given value.
-
-```javascript
-var myObject = new Object();
-```
-
 #### Object literal syntax
 
 This is also called an [object initializer](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Object_initializer).
@@ -62,11 +81,18 @@ This is equivalent to the syntax above, and is the one we use to create JSON obj
 var myObject = {};
 ```
 
-#### Constructor function
+#### Object constructors
 
-It is also possible to use a `function` statement to create an object that serves as a "constructor function."
+The [Object](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object) constructor is a 
+function that returns a Object.
 
-The first step is to write a function that will define the object. By convention, this function we start the function name with a capital letter. Once the function is defined (in the current scope), you can create a new object by using the keyword `new`.
+```javascript
+var myObject = new Object();
+```
+
+If we want to add some initial functionality to an object. It is also possible to use a `function` statement to create 
+an object that serves as a "constructor function."
+By convention, this function we start the function name with a capital letter. Once the function is defined (in the current scope), you can create a new object by using the keyword `new`.
 
 ```javascript
 function Classroom(name, numberOfStudents) {
@@ -76,6 +102,8 @@ function Classroom(name, numberOfStudents) {
 
 var wdi = new Classroom("WDI 29 San Francisco", 18);
 ```
+
+[Comment]: # (A good convention to get into is to use upper case names for objects.)
 
 #### Object.create
 
