@@ -1,14 +1,16 @@
 # JavaScript Objects
 
+[Hook]: # (What makes modern programming work.)
+
 ### Objectives
 *After this lesson, students will be able to:*
 
-- Compare objects, key-value stores, and arrays as data structures
-- Explain the difference between object properties and methods
-- Create empty objects and objects with multiple properties and methods using object literal syntax
+- Compare key-value stores and arrays as data structures
+- Create empty objects and objects with multiple properties using object literal syntax
 - Compare adding and retrieving properties to an existing object using the dot and bracket notations
-- Access properties of an object using keys and helper methods (.hasOwnProperty)
-- Iterate over the keys of an object to return and manipulate values
+- Define what ``this`` means for an object
+- Access properties of a key value store using keys and helper methods (.hasOwnProperty)
+- Access the keys of a key value store to return and manipulate values
 
 ### Preparation
 *Before this lesson, students should already be able to:*
@@ -19,179 +21,104 @@
 Objects in JavaScript
 =====
 
-[Comment]: # (Objects and Object Oriented Programming is in some sense the start of "real programming". But it also comes with another aspect of being a developer, "religious wars" or deeply held beliefs about the "right" way to do something.)
-[Comment]: # (The vocabulary is important but it also can change a little bit based on who you are talking to. If you can follow the exercises and make what we talk about operational don't worry to much about the vocabulary.) 
-[Comment]: # (Feel free to be a little bit more aggressive about asking if something is a parking lot issue.)
-
 ## Opening
 
-### What are objects and key-value stories (10 mins)
+## What are key-value stores and some unique JavaScript issues (10 mins)
 
-* Key-value stores are used to group multiple pieces of data together
-  * Like arrays, key-value stores can hold multiple pieces of data of varying types; but unlike arrays, objects use named 
-  keys rather than indices to order and access those pieces of data
-  * Modern languages call this data structure different names, Ruby = hash, Python = dictionary, Go = map  
-* Object Oriented Programming(OOP) is the idea of combining a set of specific data with the functions that operate on that 
-data
+Two main ways to group data in modern languages:
+key value store | array
+--------------- | -----
+Can store any data type, strings, numbers, arrays | Can store any data type, strings, numbers, arrays 
+Access the values by key or name                  | Access the values by index
+Set a value after it has been created             | Set a value after it had been created 
+Dynamic can add a key at any time                 | Add values to the beginning or end of 
 
-Example: We can think about modeling a car in an object oriented way by thinking about what is the data about a car that
-we need and how does that data change what are the functions that operate on the data were using for the car
+[CFU]: # (Ask the students for properties of arrays as activity as we work through the chart)
 
-[Comment]: # (This is different from procedural programming or functional programming in that we grouping things by related concepts rather than the steps needed to follow or something more esoteric) 
-* Objects in general are made up of two things – properties and methods. Properties are the data attached to an object 
-that describe it or are related to it in some way. Methods are the functions that associated to the object or how we 
-can change or alter the object.
+[Comment]: # (This makes things much easier for humans. We can associate names with things rather than remembering that name is three memory offsets from something) 
 
-Example 1: Car in e-commerce app. Here the properties are more related to the car as a good to sell. What color is it? 
-How many seats are there? What kind of seats, leather vs  upholstery. What kind of sound system it has. Some of the 
-methods might be 
+Some unique JavaScript issues:
+* No actual key-value store, we use objects
 
-Example 2: Car in a driving game. Here the properties are more related to how it works in the game. We still might have
-color but we'd also have position, speed, maybe damage. The methods are things like driving, braking, or hitting 
-something.
+[Comment]: # (We'll talk more about the extra properties of the Object type next week during some lectures on OOP.)
+[Comment]: # (The fancy computer science term for having the same word for is called overloading.) 
 
-In JavaScript, there are 5 primitive types, ``null``, ``undefined``, ``boolean``, ``string``, and ``number``, 
-**everything else is an object** even functions. And what is an object? An Object in JavaScript is a key-value store. 
-The properties are the keys to the key-value store. The methods are just keys that map to a function instead of 
-something more concrete like a string, and 
+* The keys of JavaScript key-value stores are called properties
 
-An Object in JavaScript also has one important property called a ``prototype``. This is the property that lets us link 
-all of our objects, like cars, together.
+[CFU]: # (Fo5 for key-value stores, properties) 
 
-[Comment]: # (One way to think about this is like the difference between small "d" democrats and big "D" Democrats in the US. Everyone in the principles of democracy but Democrats believe in particular way of carrying out those principles but they're both called democrats.) 
-If we just need a key-value store we can create an Object and just ignore the prototype.
 
-![mindblown](https://www.github.com/den-wdi-1/js-objects/images/cosmo_mind_blown.gif)
+## Working with Objects (15 mins)
 
-It's OK if this doesn't make sense right now. We'll be going over how this works for the rest of the module so we'll be
-able to see these ideas in action. We'll also be coming back to OOP in more depth with Ruby.
-
-[CFU]: # (Quick Fo5 around the comparison between arrays, key-value pairs, and objects. If everyone is completely lost check each concept individually do a quick review of the completely lost portion and then )
-
-## Creating Objects (5 mins)
-
-There are 4 different ways to create an object.
-#### Object literal syntax
-
-This is also called an [object initializer](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Object_initializer).
-
-This is equivalent to the syntax above, and is the one we use to create JSON objects.
+The simplest way to create an object is to use curly braces.
 
 ```javascript
 var myObject = {};
 ```
 
-#### Object constructors
+This creates a blank object.
 
-The [Object](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object) constructor is a 
-function that returns a Object.
+This is also called an [object initializer](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Object_initializer).
 
-```javascript
-var myObject = new Object();
-```
-
-If we want to add some initial functionality to an object. It is also possible to use a `function` statement to create 
-an object that serves as a "constructor function."
-By convention, this function we start the function name with a capital letter. Once the function is defined (in the current scope), you can create a new object by using the keyword `new`.
-
-```javascript
-function Classroom(name, numberOfStudents) {
-  this.name = name;
-  this.numberOfStudents = numberOfStudents;
-}
-
-var wdi = new Classroom("WDI 29 San Francisco", 18);
-```
-
-[Comment]: # (A good convention to get into is to use upper case names for objects.)
-
-#### Object.create
-
-It is possible to use the syntax [`Object.create()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/create).
-
-This method can take an object in argument as the prototype, allowing you to create an object without having to use a constructor function.
-
-
+If we want to add some initial keys, can use a colon.
 ```javascript
 var Person = {
-  type: "Human",
-  displayType: function(){
-    console.log(this.type);
-  }
+  name: "JP",
+  titles: ["Consultant", "Dad", "Programmer"] 
 }
-
-var person1 = Object.create(Person);
-person1.displayType();
-=> Human
-
-var person2 = Object.create(Person);
-person2.type = "Male";
-person2.displayType();
-=> "Male"
 ```
 
-## Object Properties
+We can then use the property that been set.
+[CFU]: # (Call for properties of the person)
 
-Objects in JavaScript **always** have properties associated with them.
+You can think of a property on a JavaScript object as a type of variable that contains a value. The properties of an 
+object can be accessed using "dot notation":
 
-You can think of a property on a JavaScript object as a type of variable that contains a value. The properties of an object can be accessed using "dot notation":
-
-```javascript
-var Person = {
-  name: "Ben"
-}
-
+```javascript 
 Person.name
-=> "Ben"
+=> "JP"
 ```
 
 You can define or re-assign a property by assigning it a value using `=` as you would a normal variable.
 
 ```javascript
 
-Person.name = "Alex"
+Person.name = "Zeb"
 
 Person.name
-=> "Alex"
+=> "Zeb"
 ```
 
-## Creating an object with properties
-
-We are going to create an object `classroom` that contains properties `name` and `campus`:
-
-```javascript
-var classroom = new Object();
-=> undefined
-
-classroom.name = "WDI 29";
-=> "WDI 29"
-
-classroom.campus = "San Francisco";
-=> "San Francisco"
-
-classroom
-=> Object {name: "WDI 29", campus: "San Francisco"}
-```
+### Excercise 
+Create an object called ``classroom`` with properties, name and campus. The name property should have value Den- and the 
+campus property should value Denver
+<details>
+  ```javascript
+  var classroom = {
+    name: "Den-"
+    campus: "Denver"
+  }
+</details>
 
 #### Bracket notation
 
 There is another way to set properties on a JavaScript object.
 
 ```javascript
-classroom["name"]   = "WDI 29";
-classroom["campus"] = "San Francisco";
+classroom["name"]   = "Den";
+classroom["campus"] = "Denver";
 ```
 
 This syntax can also be used to read properties of an object:
 
 ```javascript
 console.log(classroom["name"]);
-=> "WDI 29";
+=> "Den";
 
 var property = "campus";
 
 console.log(classroom[property]);
-=> "San Francisco";
+=> "Denver";
 ```
 
 For more details see [MDN's Documentation on Property Accessors](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Property_Accessors).
@@ -204,130 +131,33 @@ If you want to delete a property of an object (and by extension, the value attac
 The following code shows how to remove a property:
 
 ```
-var classroom = {"name": "WDI 29, "campus": "San Francisco", "start": "5/2/2016"};
+var classroom = {"name": "Den , "campus": "Denver", "start": "6/13/2016"};
 delete classroom.start;
 classroom
-=> {name: "WDI 29", campus: "San Francisco"}
+=> {name: "Den", campus: "Denver"}
 ```
 
-## Object methods
+## Enumerating properties of an object(5 mins)
 
-As we've said before, the value of a property can be anything in JavaScript, means we can also attach functions to objects properties. When a function is attached to a property, this function becomes a `method`. Methods are defined the exact same way as a function, except that they have to be defined as the property of an object.
+If we want to get the key, we can use ``Object.keys()`` function to get all of the keys of an object.
 
-```javascript
-var classroom = {
-  name: "WDI 29",
-  campus: "San Francisco",
-  start: "5/2/2016",
-  sayHello: function() {
-    console.log("Hello");
-  }
-};
-```
-
-To call the method, we add a pair of parentheses to execute it:
-
-```
-classroom.sayHello();
-=> Hello
-```
-
-#### Assigning a previously-defined function
-
-We can attach regular functions to objects as methods, even after they are created.
-
-```
-var sayHello = function() { console.log("Hello"); }
-
-classroom.sayHello = sayHello;  
-
-classroom.sayHello()
-=> Hello
-```
-
-##`this` for object references
-
-In JavaScript, `this` is a keyword that refers to the current object. When used in a method on an object, it will always refer to the current object.
-
-
-```
-var classroom = {
-  name: "WDI 29",
-  campus: "San Francisco",
-  start: "5/2/2016",
-  classInfo: function(){
-    console.log("This is " + this.name + " and the class starts on " + this.start);
-  }
-};
-
-classroom.classInfo()
-=> This is WDI 29 and it starts on 5/2/2016
-```
-
-## We Do: Getters and setters
-
-> A getter is a method that gets the value of a specific property. A setter is a method that sets the value of a specific property. You can define getters and setters on any predefined core object or user-defined object that supports the addition of new properties. The syntax for defining getters and setters uses object literals.
-
-```javascript
-var o = {
-    a: 7,
-    get b() {
-        return this.a + 1;
-    },
-    set c(x) {
-        this.a = x / 2
-    }
-};
-
-console.log(o.a);
-=> 7
-
-console.log(o.b);
-=> 8
-
-o.c = 50;
-console.log(o.a);
-=> 25
-```
-
-This section from [MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Working_with_Objects#Creating_new_objects#Defining_getters_and_setters)
-
-#### Enumerating properties of an object
-
-There are three native ways to list the properties of an object:
-
-* **for...in loops** This method traverses all enumerable properties of an object and its prototype chain
-* **Object.keys(o)**  This method returns an array with all the own (not in the prototype chain) enumerable properties' names ("keys") of an object o.
-* **Object.getOwnPropertyNames(o)** This method returns an array containing all own properties' names (enumerable or not) of an object o.
-
-**Loop over an objects properties**
-
-
-You can use the bracket notation with for...in to iterate over all the enumerable properties of an object.
+Once we have an array of the keys we can loop over the keys to work with all of the properties of an object.
 
 ```javascript
 var myCar = {"make": "Ford", "model": "Mustang", "year": 1969};
 
-function showProps(obj, objName) {
-  var result = "";
-  for (var i in obj) {
-    if (obj.hasOwnProperty(i)) {
-      result += objName + "." + i + " = " + obj[i] + "\n";
-    }
-  }
-  return result;
-}
+var keys = Object.keys(myCar) 
 
-showProps(myCar, "Car");
-=> Car.make = Ford
-=> Car.model = Mustang
-=> Car.year = 1969
+for(i=0; i < keys.length; i++){ 
+  console.log("Key " + i + " " + keys[i]) 
+}
 ```
 
 This section from [MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Working_with_Objects#Creating_new_objects#Objects_and_properties)
 
+[Comment]: # (There are some corner cases that apply to enumeration based on the fact that its an object be we'll get into those next week.)
 
-## Comparing Objects
+## Comparing Objects (10 min)
 
 In JavaScript, if two objects are created separately, they are distinct, even if they are given the same properties.
 
@@ -345,9 +175,55 @@ student === student
 => true
 ```
 
-If you're confused by the difference between `==` and `===` review MDN's notes on [equality](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Comparison_Operators#Equality_()) and [strict equality](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Comparison_Operators#Identity_strict_equality_())
+Moreover, objects are assigned by reference. Another way to say this is if we create a new variable and assign the 
+object to the new variable we don't create a new object.
 
-## Independent Monkey Exercise (20 minutes)
+```javascript
+var student1 = {name: "Chris"};
+=> undefined
+
+var student2 = student1;
+=> undefined
+
+student2.name
+=> "Chris"
+
+student2.name = "Tom";
+=> "Tom"
+
+student1.name
+=> "Tom"
+
+student1 === student2
+=> true
+```
+
+[CFU]: # (Stop and jot on the solutions to student1.name and the equality)
+
+What? Even though we had two names we only had a single object. If we want to create a new object we need to use 
+``clone``.
+
+```javascript
+var student1 = {name: "Chris"} 
+=> undefined
+
+var student2 = student1.clone
+=> undefined
+
+student2.name
+=> "Tom"
+
+student2.name = "Tom"
+=> "Tom"
+
+student1.name 
+=> "Chris"
+
+student1 === student2
+=> false
+```
+
+## Monkey Exercise (20 minutes)
 
 - Create a `monkey` object, which has the following properties:
 
@@ -355,27 +231,18 @@ If you're confused by the difference between `==` and `===` review MDN's notes o
   - `species`
   - `foodsEaten`
 
-  And the following methods:
+- Create 3 monkeys total. Make sure all 3 monkeys have all properties set. All monkeys should eat multiple foods.
 
-  - `eatSomething(thingAsString)`
-  - `introduce`: producers a string introducing itself, including its name, species, and what it's eaten
+- Exercise your monkeys by retrieving their properties and using their methods. Practice using both syntaxes for 
+retrieving properties (dot notation and brackets).
 
-- Create 3 monkeys total. Make sure all 3 monkeys have all properties set and methods defined.
-
-- Exercise your monkeys by retrieving their properties and using their methods. Practice using both syntaxes for retrieving properties (dot notation and brackets).
+[CFU]: # (A new requirement has just come. We need to start keeping track of color to see if there is a correlation between color and food sources. Add a color property to each monkey.)
 
 ## Conclusion (5 mins)
 
-We will use objects in JavaScript every day, and you will have plenty of time to practice creating and using objects in Javascript. There are a lot of resources available on the web for you to dive deeper, but the most detailed and understandable one is probably MDN.
+We will use key-value stores in JavaScript every day, and you will have plenty of time to practice creating and using 
+objects in Javascript. There are a lot of resources available on the web for you to dive deeper, but the most detailed 
+and understandable one is probably MDN.
 
 - [JavaScript Reference](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object)
-- [Intro to Object-Orientated Javascript](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Introduction_to_Object-Oriented_JavaScript)
 - [Objects in Javascript](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Working_with_Objects)
-
-<!--
-
-* All programming can be boiled down to data & behavior
-* OOP is about creating taxonomies
-* OOP is a stylistic approach to organizing code
-
--->
