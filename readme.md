@@ -23,7 +23,7 @@ Objects in JavaScript
 
 ## Opening
 
-## What are key-value stores and some unique JavaScript issues (10 mins)
+### What are objects and key-value stories (10 mins)
 
 Two main ways to group data in modern languages:
 key value store | array
@@ -34,14 +34,12 @@ Set a value after it has been created             | Set a value after it had bee
 Dynamic can add a key at any time                 | Add values to the beginning or end of 
 
 [CFU]: # (Ask the students for properties of arrays as activity as we work through the chart)
-
 [Comment]: # (This makes things much easier for humans. We can associate names with things rather than remembering that name is three memory offsets from something) 
 
 Some unique JavaScript issues:
 * No actual key-value store, we use objects
 
 [Comment]: # (We'll talk more about the extra properties of the Object type next week during some lectures on OOP.)
-[Comment]: # (The fancy computer science term for having the same word for is called overloading.) 
 
 * The keys of JavaScript key-value stores are called properties
 
