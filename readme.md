@@ -26,12 +26,13 @@ Objects in JavaScript
 ### What are objects and key-value stories (10 mins)
 
 Two main ways to group data in modern languages:
-key value store | array
---------------- | -----
-Can store any data type, strings, numbers, arrays | Can store any data type, strings, numbers, arrays 
-Access the values by key or name                  | Access the values by index
-Set a value after it has been created             | Set a value after it had been created 
-Dynamic can add a key at any time                 | Add values to the beginning or end of 
+
+|key value store | array |
+|--------------- | ----- |
+|Can store any data type, strings, numbers, arrays | Can store any data type, strings, numbers, arrays | 
+|Access the values by key or name                  | Access the values by index |
+|Set a value after it has been created             | Set a value after it had been created | 
+|Dynamic can add a key at any time                 | Add values to the end of array easily |
 
 [CFU]: # (Ask the students for properties of arrays as activity as we work through the chart)
 [Comment]: # (This makes things much easier for humans. We can associate names with things rather than remembering that name is three memory offsets from something) 
@@ -96,6 +97,7 @@ campus property should value Denver
     name: "Den-"
     campus: "Denver"
   }
+  ```
 </details>
 
 #### Bracket notation
