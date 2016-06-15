@@ -89,12 +89,12 @@ Person.name
 ```
 
 ### Excercise 
-Create an object called ``classroom`` with properties, name and campus. The name property should have value Den- and the 
+Create an object called ``classroom`` with properties, name and campus. The name property should have value White Walkers and the 
 campus property should value Denver
 <details>
   ```javascript
   var classroom = {
-    name: "Den-"
+    name: "White Walkers"
     campus: "Denver"
   }
   ```
@@ -105,7 +105,7 @@ campus property should value Denver
 There is another way to set properties on a JavaScript object.
 
 ```javascript
-classroom["name"]   = "Den";
+classroom["name"]   = "White Walkers";
 classroom["campus"] = "Denver";
 ```
 
@@ -113,7 +113,7 @@ This syntax can also be used to read properties of an object:
 
 ```javascript
 console.log(classroom["name"]);
-=> "Den";
+=> "White Walkers";
 
 var property = "campus";
 
@@ -131,10 +131,10 @@ If you want to delete a property of an object (and by extension, the value attac
 The following code shows how to remove a property:
 
 ```
-var classroom = {"name": "Den , "campus": "Denver", "start": "6/13/2016"};
+var classroom = {"name": "White Walkers", "campus": "Denver", "start": "6/13/2016"};
 delete classroom.start;
 classroom
-=> {name: "Den", campus: "Denver"}
+=> {name: "White Walkers", campus: "Denver"}
 ```
 
 ## Enumerating properties of an object(5 mins)
@@ -146,7 +146,7 @@ Once we have an array of the keys we can loop over the keys to work with all of 
 ```javascript
 var myCar = {"make": "Ford", "model": "Mustang", "year": 1969};
 
-var keys = Object.keys(myCar) 
+var keys = Object.keys(myCar)
 
 for(i=0; i < keys.length; i++){ 
   console.log("Key " + i + " " + keys[i]) 
@@ -155,7 +155,7 @@ for(i=0; i < keys.length; i++){
 
 This section from [MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Working_with_Objects#Creating_new_objects#Objects_and_properties)
 
-[Comment]: # (There are some corner cases that apply to enumeration based on the fact that its an object be we'll get into those next week.)
+[Comment]: # (There are some corner cases that apply to enumeration based on the fact that its an object but we'll get into those next week.)
 
 ## Comparing Objects (10 min)
 
