@@ -8,8 +8,6 @@
 - Compare key-value stores and arrays as data structures
 - Create empty objects and objects with multiple properties using object literal syntax
 - Compare adding and retrieving properties to an existing object using the dot and bracket notations
-- Define what ``this`` means for an object
-- Access properties of a key value store using keys and helper methods (.hasOwnProperty)
 - Access the keys of a key value store to return and manipulate values
 
 ### Preparation
@@ -23,7 +21,7 @@ Objects in JavaScript
 
 ## Opening
 
-### What are objects and key-value stories (10 mins)
+### What are objects and key-value stores (10 mins)
 
 Two main ways to group data in modern languages:
 
@@ -66,6 +64,8 @@ var Person = {
   titles: ["Consultant", "Dad", "Programmer"] 
 }
 ```
+
+#### Dot notation
 
 We can then use the property that been set.
 [CFU]: # (Call for properties of the person)
