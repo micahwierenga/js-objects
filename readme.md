@@ -48,49 +48,95 @@ Some unique JavaScript issues:
 
 [CFU]: # (Fo5 for key-value stores, properties) 
 
-<!--11:35 15 minutes -->
+<!--11:35 5 minutes -->
 
-## Working with Objects 
+## Creating Objects
 
-The simplest way to create an object is to use curly braces.
+There are 4 different ways to create an object.
+
+#### Object constructor
+
+The [Object](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object) constructor creates an object wrapper for the given value.
+
+```javascript
+var myObject = new Object();
+```
+
+#### Object literal syntax
+
+This is also called an [object initializer](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Object_initializer).
+
+This is equivalent to the syntax above, and is the one we use to create JSON objects.
 
 ```javascript
 var myObject = {};
 ```
 
-This creates a blank object.
+#### Constructor function
 
-This is also called an [object initializer](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Object_initializer).
+It is also possible to use a `function` statement to create an object that serves as a "constructor function."
 
-If we want to add some initial keys, can use a colon.
+The first step is to write a function that will define the object. By convention, we start the name of a constructor function with a capital letter. Once the function is defined (in the current scope), you can create a new object by using the keyword `new`.
+
 ```javascript
-var Person = {
-  name: "Zeb",
-  titles: ["Teacher", "Puppy Owner", "Programmer"] 
+function Classroom(name, numberOfStudents) {
+  this.name = name;
+  this.numberOfStudents = numberOfStudents;
 }
+
+var wdi = new Classroom("WDI 32 San Francisco", 18);
 ```
 
-#### Dot notation
+#### Object.create
 
-We can then use the property that been set.
-[CFU]: # (Call for properties of the person)
+It is possible to use the syntax [`Object.create()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/create).
 
-You can think of a property on a JavaScript object as a type of variable that contains a value. The properties of an 
-object can be accessed using "dot notation":
+This method can take a prototype object as an argument, allowing you to create an object without having to use a constructor function.
 
-```javascript 
+
+```javascript
+var Person = {
+  type: "Human",
+  displayType: function(){
+    console.log(this.type);
+  }
+}
+
+var person1 = Object.create(Person);
+person1.displayType();
+=> Human
+
+var person2 = Object.create(Person);
+person2.type = "Male";
+person2.displayType();
+=> "Male"
+```
+
+<!--11:40 10 minutes -->
+
+## Object Properties
+
+Objects in JavaScript **always** have properties associated with them.
+
+You can think of a property on a JavaScript object as a type of variable that contains a value. The properties of an object can be accessed using "dot notation":
+
+```javascript
+var Person = {
+  name: "Ben"
+}
+
 Person.name
-=> "Nick"
+=> "Ben"
 ```
 
 You can define or re-assign a property by assigning it a value using `=` as you would a normal variable.
 
 ```javascript
 
-Person.name = "Zeb"
+Person.name = "Alex"
 
 Person.name
-=> "Zeb"
+=> "Alex"
 ```
 
 ### Excercise 
@@ -142,9 +188,66 @@ classroom
 => {name: "White Walkers", campus: "Denver"}
 ```
 
-## Enumerating properties of an object(5 mins)
+<!--11:50 5 minutes -->
 
-If we want to get the key, we can use ``Object.keys()`` function to get all of the keys of an object.
+## Object methods
+
+As we've said before, the value of a property can be anything in JavaScript, means we can also attach functions to objects properties. When a function is attached to a property, this function becomes a `method`. Methods are defined the exact same way as a function, except that they have to be defined as the property of an object.
+
+```javascript
+var classroom = {
+  name: "WDI 32",
+  campus: "San Francisco",
+  start: "9/6/2016",
+  sayHello: function() {
+    console.log("Hello");
+  }
+};
+```
+
+To call the method, we add a pair of parentheses to execute it:
+
+```
+classroom.sayHello();
+=> Hello
+```
+
+## `this` for object references
+
+In JavaScript, `this` is a keyword that refers to the current object. When used in a method on an object, it will always refer to the current object.
+
+
+```
+var classroom = {
+  name: "WDI 32",
+  campus: "San Francisco",
+  start: "9/6/2016",
+  classInfo: function(){
+    console.log("This is " + this.name + " and the class starts on " + this.start);
+  }
+};
+
+classroom.classInfo()
+=> This is WDI 32 and it starts on 9/6/2016
+```
+
+#### Assigning a previously-defined function
+
+We can attach regular functions to objects as methods, even after they are created.
+
+```
+var sayHello = function() { console.log("Hello"); }
+
+classroom.sayHello = sayHello;  
+
+classroom.sayHello()
+=> Hello
+```
+<!-- 11:55 5 minutes -->
+
+## Enumerating properties of an object
+
+We can use ``Object.keys()`` function to get all of the keys of an object.
 
 Once we have an array of the keys we can loop over the keys to work with all of the properties of an object.
 
@@ -158,11 +261,11 @@ for(i=0; i < keys.length; i++){
 }
 ```
 
-This section from [MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Working_with_Objects#Creating_new_objects#Objects_and_properties)
+This section from [MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Working_with_Objects#Creating_new_objects#Objects_and_properties) has more details.
 
 [Comment]: # (There are some corner cases that apply to enumeration based on the fact that its an object but we'll get into those next week.)
 
-<!--11:50 5 minutes -->
+<!--12:00 5 minutes -->
 
 ## Comparing Objects
 
@@ -207,30 +310,9 @@ student1 === student2
 
 [CFU]: # (Stop and jot on the solutions to student1.name and the equality)
 
-What? Even though we had two names we only had a single object. If we want to create a new object we need to use 
-``clone``.
+What? Even though we had two names we only had a single object. Both of these variables are pointing to the same thing.
 
-```javascript
-var student1 = {name: "Chris"} 
-=> undefined
-
-var student2 = student1.clone
-=> undefined
-
-student2.name
-=> "Tom"
-
-student2.name = "Tom"
-=> "Tom"
-
-student1.name 
-=> "Chris"
-
-student1 === student2
-=> false
-```
-
-<!--11:55 20 minutes -->
+<!--12:05 20 minutes -->
 
 ## Monkey Exercise
 
@@ -247,7 +329,7 @@ retrieving properties (dot notation and brackets).
 
 [CFU]: # (A new requirement has just come. We need to start keeping track of color. Add a color property to each monkey.)
 
-<!--12:15 5 minutes -->
+<!--12:25 5 minutes -->
 
 ## Conclusion
 
