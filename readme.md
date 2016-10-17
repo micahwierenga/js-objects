@@ -1,29 +1,33 @@
 # JavaScript Objects
 
-[Hook]: # (What makes modern programming work.)
+<!--11:20 5 minutes -->
+
+[Hook]: # (-Code this out- So we've seen arrays, and how they can be a very helpful method to store data.  So my program always needs access to this fourth element in the array.  How do I get that?  Great.  However, what happens if I remove an item from the middle of my array? -Indices shift- Now how do I get that same element?  Also, if we hire a new developer tomorrow, and he takes a look at my code, how is he/she supposed to know what array[3] means?  With key-value stores, we can solve both those issues.)
 
 ### Objectives
 *After this lesson, students will be able to:*
 
-- Compare key-value stores and arrays as data structures
-- Create empty objects and objects with multiple properties using object literal syntax
-- Compare adding and retrieving properties to an existing object using the dot and bracket notations
-- Access the keys of a key value store to return and manipulate values
+- **Compare** key-value stores and arrays as data structures
+- **Create** empty objects and objects with multiple properties using object literal syntax
+- **Compare** adding and retrieving properties to an existing object using the dot and bracket notations
+- **Access** the keys of a key-value store to return and manipulate values
 
 ### Preparation
 *Before this lesson, students should already be able to:*
 
-- Create and manipulate variables with JavaScript
-- Use the chrome dev tools console
+- **Create** and **manipulate** variables with JavaScript
+- **Use** the chrome dev tools console
 
 Objects in JavaScript
 =====
 
+<!--11:25 10 minutes -->
+
 ## Opening
 
-### What are objects and key-value stores (10 mins)
+### What are objects and key-value stores
 
-Two main ways to group data in modern languages:
+There are two main ways to group data in modern languages:
 
 |key value store | array |
 |--------------- | ----- |
@@ -44,8 +48,9 @@ Some unique JavaScript issues:
 
 [CFU]: # (Fo5 for key-value stores, properties) 
 
+<!--11:35 15 minutes -->
 
-## Working with Objects (15 mins)
+## Working with Objects 
 
 The simplest way to create an object is to use curly braces.
 
@@ -60,8 +65,8 @@ This is also called an [object initializer](https://developer.mozilla.org/en-US/
 If we want to add some initial keys, can use a colon.
 ```javascript
 var Person = {
-  name: "JP",
-  titles: ["Consultant", "Dad", "Programmer"] 
+  name: "Zeb",
+  titles: ["Teacher", "Puppy Owner", "Programmer"] 
 }
 ```
 
@@ -75,7 +80,7 @@ object can be accessed using "dot notation":
 
 ```javascript 
 Person.name
-=> "JP"
+=> "Nick"
 ```
 
 You can define or re-assign a property by assigning it a value using `=` as you would a normal variable.
@@ -157,7 +162,9 @@ This section from [MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/
 
 [Comment]: # (There are some corner cases that apply to enumeration based on the fact that its an object but we'll get into those next week.)
 
-## Comparing Objects (10 min)
+<!--11:50 5 minutes -->
+
+## Comparing Objects
 
 In JavaScript, if two objects are created separately, they are distinct, even if they are given the same properties.
 
@@ -223,7 +230,9 @@ student1 === student2
 => false
 ```
 
-## Monkey Exercise (20 minutes)
+<!--11:55 20 minutes -->
+
+## Monkey Exercise
 
 - Create a `monkey` object, which has the following properties:
 
@@ -236,9 +245,11 @@ student1 === student2
 - Exercise your monkeys by retrieving their properties and using their methods. Practice using both syntaxes for 
 retrieving properties (dot notation and brackets).
 
-[CFU]: # (A new requirement has just come. We need to start keeping track of color to see if there is a correlation between color and food sources. Add a color property to each monkey.)
+[CFU]: # (A new requirement has just come. We need to start keeping track of color. Add a color property to each monkey.)
 
-## Conclusion (5 mins)
+<!--12:15 5 minutes -->
+
+## Conclusion
 
 We will use key-value stores in JavaScript every day, and you will have plenty of time to practice creating and using 
 objects in Javascript. There are a lot of resources available on the web for you to dive deeper, but the most detailed 
