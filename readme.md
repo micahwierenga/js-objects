@@ -40,7 +40,7 @@ There are two main ways to group data in modern languages:
 [Comment]: # (This makes things much easier for humans. We can associate names with things rather than remembering that name is three memory offsets from something) 
 
 Some unique JavaScript issues:
-* No actual key-value store, we use objects
+* No separate key-value store, we use objects
 
 [Comment]: # (We'll talk more about the extra properties of the Object type next week during some lectures on OOP.)
 
@@ -84,7 +84,7 @@ function Classroom(name, numberOfStudents) {
   this.numberOfStudents = numberOfStudents;
 }
 
-var wdi = new Classroom("WDI 32 San Francisco", 18);
+var wdi = new Classroom("WDI 2 Denver", 12);
 ```
 
 #### Object.create
@@ -140,12 +140,11 @@ Person.name
 ```
 
 ### Excercise 
-Create an object called ``classroom`` with properties, name and campus. The name property should have value White Walkers and the 
-campus property should value Denver
+Create an object called ``classroom`` with properties, name and campus. The name property should have value Code Walkers and the campus property should have value Denver
 <details>
   ```javascript
   var classroom = {
-    name: "White Walkers"
+    name: "Code Walkers"
     campus: "Denver"
   }
   ```
@@ -156,7 +155,7 @@ campus property should value Denver
 There is another way to set properties on a JavaScript object.
 
 ```javascript
-classroom["name"]   = "White Walkers";
+classroom["name"]   = "Code Walkers";
 classroom["campus"] = "Denver";
 ```
 
@@ -164,7 +163,7 @@ This syntax can also be used to read properties of an object:
 
 ```javascript
 console.log(classroom["name"]);
-=> "White Walkers";
+=> "Code Walkers";
 
 var property = "campus";
 
@@ -182,10 +181,10 @@ If you want to delete a property of an object (and by extension, the value attac
 The following code shows how to remove a property:
 
 ```
-var classroom = {"name": "White Walkers", "campus": "Denver", "start": "6/13/2016"};
+var classroom = {"name": "Code Walkers", "campus": "Denver", "start": "10/31/2016"};
 delete classroom.start;
 classroom
-=> {name: "White Walkers", campus: "Denver"}
+=> {name: "Code Walkers", campus: "Denver"}
 ```
 
 <!--11:50 5 minutes -->
@@ -196,9 +195,9 @@ As we've said before, the value of a property can be anything in JavaScript, mea
 
 ```javascript
 var classroom = {
-  name: "WDI 32",
-  campus: "San Francisco",
-  start: "9/6/2016",
+  name: "WDI 2",
+  campus: "Denver",
+  start: "10/31/2016",
   sayHello: function() {
     console.log("Hello");
   }
@@ -219,16 +218,16 @@ In JavaScript, `this` is a keyword that refers to the current object.
 
 ```
 var classroom = {
-  name: "WDI 32",
-  campus: "San Francisco",
-  start: "9/6/2016",
+  name: "WDI 2",
+  campus: "Denver",
+  start: "10/31/2016",
   classInfo: function(){
     console.log("This is " + this.name + " and the class starts on " + this.start);
   }
 };
 
 classroom.classInfo()
-=> This is WDI 32 and it starts on 9/6/2016
+=> This is WDI 2 and it starts on 10/31/2016
 ```
 
 #### Assigning a previously-defined function
