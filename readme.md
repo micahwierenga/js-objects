@@ -167,7 +167,7 @@ console.log(classroom["name"]);
 
 var property = "campus";
 
-console.log(classroom[property]);
+console.log(classroom["property"]);
 => "Denver";
 ```
 
