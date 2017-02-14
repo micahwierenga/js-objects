@@ -1,6 +1,6 @@
 # JavaScript Objects
 
-<!--11:20 5 minutes -->
+<!--11:25 5 minutes -->
 
 [Hook]: # (-Code this out- So we've seen arrays, and how they can be a very helpful method to store data.  So my program always needs access to this fourth element in the array.  How do I get that?  Great.  However, what happens if I remove an item from the middle of my array? -Indices shift- Now how do I get that same element?  Also, if we hire a new developer tomorrow, and he takes a look at my code, how is he/she supposed to know what array[3] means?  With key-value stores, we can solve both those issues.)
 
@@ -18,10 +18,7 @@
 - **Create** and **manipulate** variables with JavaScript
 - **Use** the chrome dev tools console
 
-Objects in JavaScript
-=====
-
-<!--11:25 10 minutes -->
+<!--11:30 10 minutes -->
 
 ## Opening
 
@@ -48,19 +45,11 @@ Some unique JavaScript issues:
 
 [CFU]: # (Fo5 for key-value stores, properties) 
 
-<!--11:35 5 minutes -->
+<!--11:40 5 minutes -->
 
 ## Creating Objects
 
-There are 4 different ways to create an object.
-
-#### Object constructor
-
-The [Object](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object) constructor creates an object wrapper for the given value.
-
-```javascript
-var myObject = new Object();
-```
+There are 2 main ways to create an object in Javascript.
 
 #### Object literal syntax
 
@@ -87,32 +76,7 @@ function Classroom(name, numberOfStudents) {
 var wdi = new Classroom("WDI 2 Denver", 12);
 ```
 
-#### Object.create
-
-It is possible to use the syntax [`Object.create()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/create).
-
-This method can take a prototype object as an argument, allowing you to create an object without having to use a constructor function.
-
-
-```javascript
-var Person = {
-  type: "Human",
-  displayType: function(){
-    console.log(this.type);
-  }
-}
-
-var person1 = Object.create(Person);
-person1.displayType();
-=> Human
-
-var person2 = Object.create(Person);
-person2.type = "Male";
-person2.displayType();
-=> "Male"
-```
-
-<!--11:40 10 minutes -->
+<!--11:45 10 minutes -->
 
 ## Object Properties
 
@@ -187,11 +151,11 @@ classroom
 => {name: "Code Walkers", campus: "Denver"}
 ```
 
-<!--11:50 5 minutes -->
+<!--11:55 5 minutes -->
 
 ## Object methods
 
-As we've said before, the value of a property can be anything in JavaScript, means we can also attach functions to objects properties. When a function is attached to a property, this function becomes a `method`. Methods are defined the exact same way as a function, except that they have to be defined as the property of an object.
+As we've said before, the value of a property can be anything in JavaScript, which includes functions. When a function is attached to a property, this function becomes a `method`. Methods are defined the exact same way as a function, except that they have to be defined as the property of an object.
 
 ```javascript
 var classroom = {
@@ -242,7 +206,7 @@ classroom.sayHello = sayHello;
 classroom.sayHello()
 => Hello
 ```
-<!-- 11:55 5 minutes -->
+<!-- 12:00 5 minutes -->
 
 ## Enumerating properties of an object
 
@@ -264,7 +228,7 @@ This section from [MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/
 
 [Comment]: # (There are some corner cases that apply to enumeration based on the fact that its an object but we'll get into those next week.)
 
-<!--12:00 5 minutes -->
+<!--12:05 5 minutes -->
 
 ## Comparing Objects
 
@@ -309,9 +273,9 @@ student1 === student2
 
 [CFU]: # (Stop and jot on the solutions to student1.name and the equality)
 
-What? Even though we had two names we only had a single object. Both of these variables are pointing to the same thing.
+What? Why is that?  Well, even though we had two names we only had a single object. Both of these variables are pointing to the same thing.
 
-<!--12:05 20 minutes -->
+<!--12:10 18 minutes -->
 
 ## Monkey Exercise
 
@@ -333,7 +297,7 @@ retrieving properties (dot notation and brackets).
 
 [CFU]: # (A new requirement has just come. We need to start keeping track of color. Add a color property to each monkey.)
 
-<!--12:25 5 minutes -->
+<!--12:28 2 minutes -->
 
 ## Conclusion
 
