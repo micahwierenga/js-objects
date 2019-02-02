@@ -2,7 +2,7 @@
 
 <!--11:25 5 minutes -->
 
-[Hook]: # (-Code this out- So we've seen arrays, and how they can be a very helpful method to store data.  So my program always needs access to this fourth element in the array.  How do I get that?  Great.  However, what happens if I remove an item from the middle of my array? -Indices shift- Now how do I get that same element?  Also, if we hire a new developer tomorrow, and he takes a look at my code, how is he/she supposed to know what array[3] means?  With key-value stores, we can solve both those issues.)
+[Hook]: # (-Code this out- So we've seen arrays, and how they can be a very helpful method to store data. So my program always needs access to this fourth element in the array. How do I get that? Great. However, what happens if I remove an item from the middle of my array? -Indices shift- Now how do I get that same element? Also, if we hire a new developer tomorrow, and he takes a look at my code, how is he/she supposed to know what array[3] means? With key-value stores, we can solve both those issues.)
 
 ### Objectives
 *After this lesson, students will be able to:*
@@ -34,16 +34,16 @@ There are two main ways to group data in modern languages:
 |Dynamic can add a key at any time                 | Add values to the end of array easily |
 
 [CFU]: # (Ask the students for properties of arrays as activity as we work through the chart)
-[Comment]: # (This makes things much easier for humans. We can associate names with things rather than remembering that name is three memory offsets from something) 
+[Comment]: # (This makes things much easier for humans. We can associate names with things rather than remembering that name is three memory offsets from something.) 
 
 Some unique JavaScript issues:
 * No separate key-value store, we use objects
 
 [Comment]: # (We'll talk more about the extra properties of the Object type next week during some lectures on OOP.)
 
-* The keys of JavaScript key-value stores are called properties
+* The keys of JavaScript key-value stores are called properties.
 
-[CFU]: # (Fo5 for key-value stores, properties) 
+[CFU]: # (Fo5 for key-value stores, properties.) 
 
 <!--11:40 5 minutes -->
 
