@@ -73,7 +73,7 @@ function Classroom(name, numberOfStudents) {
   this.numberOfStudents = numberOfStudents;
 }
 
-var wdi = new Classroom("WDI 2 Denver", 12);
+var boojCoding = new Classroom("booj-coding", 2);
 ```
 
 <!--11:45 10 minutes -->
@@ -104,12 +104,12 @@ Person.name
 ```
 
 ### Excercise 
-Create an object called ``classroom`` with properties, name and campus. The name property should have value Code Walkers and the campus property should have value Denver
+Create an object called ``classroom`` with properties, company and city. The company property should have value "booj" and the city property should have value "Denver".
 <details>
   ```javascript
   var classroom = {
-    name: "Code Walkers"
-    campus: "Denver"
+    company: "booj",
+    city: "Denver"
   }
   ```
 </details>
@@ -119,17 +119,17 @@ Create an object called ``classroom`` with properties, name and campus. The name
 There is another way to set properties on a JavaScript object.
 
 ```javascript
-classroom["name"]   = "Code Walkers";
-classroom["campus"] = "Denver";
+classroom["company"] = "booj";
+classroom["city"] = "Denver";
 ```
 
 This syntax can also be used to read properties of an object:
 
 ```javascript
-console.log(classroom["name"]);
-=> "Code Walkers";
+console.log(classroom["company"]);
+=> "booj";
 
-var property = "campus";
+var property = "city";
 
 console.log(classroom["property"]);
 => "Denver";
@@ -145,10 +145,14 @@ If you want to delete a property of an object (and by extension, the value attac
 The following code shows how to remove a property:
 
 ```
-var classroom = {"name": "Code Walkers", "campus": "Denver", "start": "10/31/2016"};
+var classroom = {
+  "company": "booj", 
+  "city": "Denver", 
+  "start": "12/12/2018"
+};
 delete classroom.start;
 classroom
-=> {name: "Code Walkers", campus: "Denver"}
+=> {company: "booj", city: "Denver"}
 ```
 
 <!--11:55 5 minutes -->
@@ -159,9 +163,9 @@ As we've said before, the value of a property can be anything in JavaScript, whi
 
 ```javascript
 var classroom = {
-  name: "WDI 2",
-  campus: "Denver",
-  start: "10/31/2016",
+  name: "booj coding",
+  city: "Denver",
+  start: "12/12/2018",
   sayHello: function() {
     console.log("Hello");
   }
@@ -182,16 +186,16 @@ In JavaScript, `this` is a keyword that refers to the current object.
 
 ```
 var classroom = {
-  name: "WDI 2",
-  campus: "Denver",
-  start: "10/31/2016",
+  name: "booj coding",
+  city: "Denver",
+  start: "12/12/2018",
   classInfo: function(){
     console.log("This is " + this.name + " and the class starts on " + this.start);
   }
 };
 
 classroom.classInfo()
-=> This is WDI 2 and it starts on 10/31/2016
+=> This is booj coding and it starts on 12/12/2018
 ```
 
 #### Assigning a previously-defined function
@@ -199,9 +203,11 @@ classroom.classInfo()
 We can attach regular functions to objects as methods, even after they are created.
 
 ```
-var sayHello = function() { console.log("Hello"); }
+var sayHello = function() { 
+  console.log("Hello");
+}
 
-classroom.sayHello = sayHello;  
+classroom.sayHello = sayHello;
 
 classroom.sayHello()
 => Hello
@@ -215,12 +221,16 @@ We can use ``Object.keys()`` function to get all of the keys of an object.
 Once we have an array of the keys we can loop over the keys to work with all of the properties of an object.
 
 ```javascript
-var myCar = {"make": "Ford", "model": "Mustang", "year": 1969};
+var myCar = {
+  "make": "Ford", 
+  "model": "Mustang", 
+  "year": 1969
+};
 
 var keys = Object.keys(myCar)
 
-for(i=0; i < keys.length; i++){ 
-  console.log("Key " + i + " " + keys[i]) 
+for(i = 0; i < keys.length; i++){ 
+  console.log("Key " + i + " " + keys[i]) ;
 }
 ```
 
@@ -235,16 +245,20 @@ This section from [MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/
 In JavaScript, if two objects are created separately, they are distinct, even if they are given the same properties.
 
 ```javascript
-var student = {name: "Chris"};
+var student1 = {
+  name: "Chris"
+};
 => undefined
 
-var student2 = {name: "Chris"};
+var student2 = {
+  name: "Chris"
+};
 => undefined
 
-student == student2
+student1 == student2
 => false
 
-student === student
+student1['name'] === student2['name']
 => true
 ```
 
@@ -252,7 +266,9 @@ Moreover, objects are assigned by reference. Another way to say this is if we cr
 object to the new variable we don't create a new object.
 
 ```javascript
-var student1 = {name: "Chris"};
+var student1 = {
+  name: "Chris"
+};
 => undefined
 
 var student2 = student1;
