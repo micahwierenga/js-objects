@@ -55,8 +55,6 @@ There are 2 main ways to create an object in Javascript.
 
 This is also called an [object initializer](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Object_initializer).
 
-This is equivalent to the syntax above, and is the one we use to create JSON objects.
-
 ```javascript
 var myObject = {};
 ```
