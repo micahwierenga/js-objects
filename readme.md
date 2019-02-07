@@ -301,7 +301,7 @@ What? Why is that?  Well, even though we had two names we only had a single obje
 
   And the following methods:
 
-  - `eatSomething(thing)`: tells the user that `name` ate `thing`
+  - `eatSomething(food)`: tells the user that `name` ate `food`
   - `introduce`: produces a string introducing the current monkey, including its name, species, and its favorite foods
 
 - Create 3 monkeys total. Make sure all 3 monkeys have all properties set. All monkeys should eat multiple foods.
