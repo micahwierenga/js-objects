@@ -227,7 +227,7 @@ var myCar = {
 
 var keys = Object.keys(myCar)
 
-for(i = 0; i < keys.length; i++){ 
+for(var i = 0; i < keys.length; i++){ 
   console.log("Key " + i + " " + keys[i]) ;
 }
 ```
